@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText mEtItem;
     private CustomAdapter customAdapter;
     private List<DataModel> mDataModelList;
-    private List<DataModel> mSelectedItems;
+    public static  List<DataModel> mSelectedItems;
 
 
     @Override
@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mDataModelList=new ArrayList<>();
-        mSelectedItems=new ArrayList<>();
         setDataToList();
 
         mGridView = (GridView) findViewById(R.id.gv_container);
@@ -64,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         for (int i = 0; i < 10; i++) {
             DataModel d = new DataModel();
             d.setName("Aalishan");
-            d.setFlag(true);
+          //  d.setFlag(true);
             mDataModelList.add(d);
         }
         return mDataModelList;
@@ -82,13 +81,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (item.length() > 3) {
                     DataModel d = new DataModel();
                     d.setName(item);
-                    d.setFlag(status);
+                  //  d.setFlag(status);
                     mDataModelList.add(d);
+                    mGridView.setItemChecked(mDataModelList.size(), true);
                     customAdapter.notifyDataSetChanged();
                     mEtItem.setText("");
                 }
                 break;
             case R.id.btn_get_data:
+                mSelectedItems=new ArrayList<>();
                 SparseBooleanArray checkedLeads = mGridView.getCheckedItemPositions();
                 int checkedItemsCount = checkedLeads.size();
                 for (int i = 0; i < checkedItemsCount; ++i) {
@@ -97,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         mSelectedItems.add((DataModel) customAdapter.getItem(position));
                 }
 
-                  Toast.makeText(MainActivity.this, "" + mSelectedItems, Toast.LENGTH_LONG).show();
+                  Toast.makeText(MainActivity.this, "" + mSelectedItems.size(), Toast.LENGTH_LONG).show();
 
                 break;
         }

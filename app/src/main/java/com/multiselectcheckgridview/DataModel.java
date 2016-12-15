@@ -6,7 +6,7 @@ package com.multiselectcheckgridview;
 
 public class DataModel {
     private String name;
-    private boolean flag;
+   // private boolean flag;
 
     public String getName() {
         return name;
@@ -16,11 +16,11 @@ public class DataModel {
         this.name = name;
     }
 
-    public boolean isFlag() {
+  /*  public boolean isFlag() {
         return flag;
     }
 
     public void setFlag(boolean flag) {
         this.flag = flag;
-    }
+    }*/
 }
